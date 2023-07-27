@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright © 2017-2023  Kynetics  LLC
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview_functionalities"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.3"
+                app:cardBackgroundColor="@color/card_background_color"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:contentPadding="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
+                        android:text="Selected Bus:"
+                        android:textAllCaps="true"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+                    <TextView
+                        android:id="@+id/textView_bus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
+                        android:text="Available Functionalities"
+                        android:textAllCaps="true"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/textView_func_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
+                        android:scrollbars="vertical"
+                        android:textAllCaps="true"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TableLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="5dp"
+                        app:cardBackgroundColor="@color/card_background_color"
+                        app:cardElevation="5dp"
+                        app:contentPadding="10dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView_read_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:text="Read From The Bus"
+                                android:textAllCaps="true"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                app:layout_constraintBottom_toTopOf="@+id/edittext_read_chip_input"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/edittext_read_chip_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:hint="The Chip address (0x##)"
+                                app:layout_constraintBottom_toBottomOf="@id/edittext_read_address_input"
+                                app:layout_constraintEnd_toStartOf="@id/edittext_read_address_input"
+                                app:layout_constraintHorizontal_chainStyle="spread"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/textView_read_title">
+
+                                <EditText
+                                    android:id="@+id/editText_read_chip_address"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start|top"
+                                    android:inputType="text"
+                                    android:maxLength="4"
+                                    tools:text="0x30" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/edittext_read_address_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:hint="Address to read (0x##)"
+                                app:layout_constraintBottom_toTopOf="@+id/textView_read_result"
+                                app:layout_constraintEnd_toStartOf="@id/button_read"
+                                app:layout_constraintStart_toEndOf="@id/edittext_read_chip_input"
+                                app:layout_constraintTop_toBottomOf="@id/textView_read_title">
+
+                                <EditText
+                                    android:id="@+id/editText_read_address"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:text="0x30"
+                                    android:gravity="start|top"
+                                    android:inputType="text"
+                                    android:maxLength="4" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Button
+                                android:id="@+id/button_read"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="READ"
+                                app:layout_constraintBottom_toBottomOf="@id/edittext_read_address_input"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toEndOf="@id/edittext_read_address_input"
+                                app:layout_constraintTop_toTopOf="@id/edittext_read_address_input" />
+
+                            <TextView
+                                android:id="@+id/textView_read_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:paddingBottom="5dp"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/edittext_read_address_input"
+                                tools:text="Results:" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:cardBackgroundColor="@color/card_background_color"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="5dp"
+                        app:contentPadding="10dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView_write_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:text="Write To The Bus"
+                                android:textAllCaps="true"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                app:layout_constraintBottom_toTopOf="@+id/edittext_write_chip_input"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/edittext_write_chip_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:hint="The Chip address (0x##)"
+                                app:layout_constraintBottom_toBottomOf="@id/edittext_write_address_input"
+                                app:layout_constraintEnd_toStartOf="@id/edittext_write_address_input"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/edittext_write_address_input">
+
+                                <EditText
+                                    android:id="@+id/editText_write_chip_address"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:text="0x30"
+                                    android:gravity="start|top"
+                                    android:inputType="text"
+                                    android:maxLength="4" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/edittext_write_address_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:hint="Address to read (0x##)"
+                                app:layout_constraintBottom_toTopOf="@id/textView_write_result"
+                                app:layout_constraintEnd_toStartOf="@id/edittext_write_value_input"
+                                app:layout_constraintStart_toEndOf="@id/edittext_write_chip_input"
+                                app:layout_constraintTop_toBottomOf="@id/textView_write_title">
+
+                                <EditText
+                                    android:id="@+id/editText_write_address"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="5"
+                                    tools:text="0x30"
+                                    android:gravity="start|top"
+                                    android:inputType="text"
+                                    android:maxLength="4" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/edittext_write_value_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:hint="New Value (0x##)"
+                                app:layout_constraintBottom_toBottomOf="@id/edittext_write_address_input"
+                                app:layout_constraintEnd_toStartOf="@id/button_write"
+                                app:layout_constraintStart_toEndOf="@id/edittext_write_address_input"
+                                app:layout_constraintTop_toTopOf="@id/edittext_write_address_input">
+
+                                <EditText
+                                    android:id="@+id/editText_write_value"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:text="0x30"
+                                    android:minEms="5"
+                                    android:gravity="start|top"
+                                    android:inputType="text"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Button
+                                android:id="@+id/button_write"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="WRITE"
+                                app:layout_constraintBottom_toBottomOf="@id/edittext_write_value_input"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/edittext_write_value_input"
+                                app:layout_constraintTop_toTopOf="@id/edittext_write_value_input" />
+
+                            <TextView
+                                android:id="@+id/textView_write_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:paddingBottom="5dp"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/edittext_write_address_input"
+                                tools:text="Results:" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,1 @@
+Android example application showcasing how to use the Kynetics Android I2C library
