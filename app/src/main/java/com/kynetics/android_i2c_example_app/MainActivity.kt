@@ -17,15 +17,19 @@
 package com.kynetics.android_i2c_example_app
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.WindowCompat
 import com.kynetics.android_i2c_example_app.databinding.ActivityMainBinding
 import io.helins.linux.i2c.I2CBuffer
@@ -66,20 +70,20 @@ class MainActivity : AppCompatActivity() {
             errorTv.visibility = View.VISIBLE
             errorTv.text = "Could not find any i2c bus on the device!!!"
 
-            dialogBuilder.setNegativeButton("Close") { _, _ ->
-                finish()
-            }
+            dialogBuilder.apply {
+                setCancelable(true)
+                setNegativeButton("Close") { _, _ ->
+                    finish()
+                }
 
-            dialogBuilder.setCancelable(true)
-            dialogBuilder.setOnCancelListener {
-                finish()
+                setOnCancelListener {
+                    finish()
+                }
             }
         } else {
 
             val dropdown = dialogView.findViewById<Spinner>(R.id.dialog_spinner)
-            val adapter: ArrayAdapter<String> =
-                ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
-                    busDevices.toMutableList())
+            val adapter = DeviceListAdapter(this, busDevices.toMutableList())
             dropdown.adapter = adapter
 
             dialogBuilder.setPositiveButton("OK") { _, _ ->
@@ -95,8 +99,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val dialog = dialogBuilder.create()
-        dialog.show()
+        dialogBuilder.create().show()
     }
 
     private fun loadViews() {
@@ -255,6 +258,30 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return available
+    }
+
+    class DeviceListAdapter(context: Context, private val list: MutableList<String>) :
+        ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, list) {
+
+        override fun getDropDownView(position: Int, convertView: View?,
+                                     parent: ViewGroup): View {
+            val dropDownView = super.getDropDownView(position, convertView, parent) as TextView
+            if (isEnabled(position)) {
+                dropDownView.setTextColor(AppCompatResources.getColorStateList(
+                    dropDownView.context,
+                    androidx.appcompat.R.color.primary_text_default_material_light))
+            } else {
+                dropDownView.setTextColor(AppCompatResources.getColorStateList(
+                    dropDownView.context,
+                    androidx.appcompat.R.color.primary_text_disabled_material_light))
+            }
+            return dropDownView
+        }
+
+        override fun isEnabled(position: Int): Boolean {
+            val item = File("/dev", list[position])
+            return item.canRead() && item.canWrite()
+        }
     }
 
     companion object {
