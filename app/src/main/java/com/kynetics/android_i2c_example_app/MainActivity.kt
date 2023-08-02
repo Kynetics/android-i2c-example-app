@@ -49,9 +49,29 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupToolbar()
+        showBusSelectDialog()
+    }
+
+    private fun setupToolbar() {
+
         setSupportActionBar(binding.toolbar)
 
-        showBusSelectDialog()
+        binding.toolbar.navigationIcon = AppCompatResources.getDrawable(this,
+            androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+
+        binding.toolbar.setNavigationOnClickListener {
+            clearViews()
+            showBusSelectDialog()
+        }
+    }
+
+    private fun clearViews() {
+        binding.main.textViewReadResult.text = ""
+        binding.main.textViewWriteResult.text = ""
+        binding.main.textViewFuncList.text = ""
+        binding.main.textViewBus.text = ""
     }
 
     @SuppressLint("SetTextI18n")
@@ -258,6 +278,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return available
+    }
+
+    override fun onBackPressed() {
+        clearViews()
+        showBusSelectDialog()
     }
 
     class DeviceListAdapter(context: Context, private val list: MutableList<String>) :
