@@ -85,9 +85,13 @@ class MainActivity : AppCompatActivity() {
             dialogBuilder.setPositiveButton("OK") { _, _ ->
                 val busName = dropdown.selectedItem.toString()
                 val busPath = "/dev/$busName"
-                i2c = I2CBus(busPath)
-                binding.main.textViewBus.text = busPath
-                loadViews()
+                try {
+                    i2c = I2CBus(busPath)
+                    binding.main.textViewBus.text = busPath
+                    loadViews()
+                } catch (e: IOException) {
+                    Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                }
             }
         }
 
