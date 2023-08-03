@@ -53,7 +53,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupToolbar()
-        showBusSelectDialog()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (i2c == null)
+            showBusSelectDialog()
     }
 
     private fun setupToolbar() {
