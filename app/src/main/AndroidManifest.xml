@@ -35,6 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.kynetics.android_i2c_example_app.AboutActivity" android:exported="false"/>
     </application>
 
 </manifest>

@@ -18,9 +18,11 @@ package com.kynetics.android_i2c_example_app
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -67,6 +69,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.menu_about -> startAboutActivity()
+        }
+        return true
+    }
+
+    private fun startAboutActivity() {
+        startActivity(Intent(this, AboutActivity::class.java))
+    }
+
     private fun clearViews() {
         binding.main.textViewReadResult.text = ""
         binding.main.textViewWriteResult.text = ""
@@ -80,9 +98,17 @@ class MainActivity : AppCompatActivity() {
 
         val busDevices = findBuses()?.sorted()
 
-        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .setCancelable(false)
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this).apply {
+            setView(dialogView)
+            setCancelable(false)
+            setNegativeButton(R.string.action_close) { _, _ ->
+                finish()
+            }
+
+            setNeutralButton(R.string.menu_about) { _, _ ->
+                startAboutActivity()
+            }
+        }
 
         if (busDevices.isNullOrEmpty()) {
             val errorTv = dialogView.findViewById<TextView>(R.id.dialog_error)
@@ -92,9 +118,6 @@ class MainActivity : AppCompatActivity() {
 
             dialogBuilder.apply {
                 setCancelable(true)
-                setNegativeButton("Close") { _, _ ->
-                    finish()
-                }
 
                 setOnCancelListener {
                     finish()
