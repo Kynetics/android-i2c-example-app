@@ -23,9 +23,12 @@
         To learn more about SDK Extension licensing please visit:\n
         <a href="https://www.kynetics.com/android-sdk-extensions">https://www.kynetics.com/android-sdk-extensions</a>\n\n
 
-        Application source code available at:\n
-        <a href="https://github.com/Kynetics/android-i2c-example-app">https://github.com/Kynetics/android-i2c-example-app</a>
+        Application source code is available under Apache v2.0 licence at:\n
+        <a href="https://github.com/Kynetics/android-i2c-example-app">https://github.com/Kynetics/android-i2c-example-app</a>\n\n
+
+        The Kynetics’ I2C library is proprietary. It is derived from MPL v2.0 source code which is available at:\n
+        <a href="https://github.com/Kynetics/linux-i2c.java">https://github.com/Kynetics/linux-i2c.java</a>
 
     </string>
-    <string name="about_copyright">Copyright © 2017–2023  Kynetics  LLC</string>
+    <string name="about_copyright">Copyright © 2023  Kynetics  LLC</string>
 </resources>
