@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     Copyright © 2017-2023  Kynetics  LLC
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,7 +34,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kynetics.android_i2c_example_app.AboutActivity" android:exported="false"/>
+        <activity
+            android:name="com.kynetics.android_i2c_example_app.AboutActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
