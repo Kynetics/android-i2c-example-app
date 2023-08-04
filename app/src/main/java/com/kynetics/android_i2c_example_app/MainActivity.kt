@@ -144,6 +144,7 @@ class MainActivity : AppCompatActivity() {
                     loadViews()
                 } catch (e: IOException) {
                     Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                    showBusSelectDialog()
                 }
             }
         }
