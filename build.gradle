@@ -1,5 +1,5 @@
 /*
-   Copyright © 2023  Kynetics  LLC
+   Copyright © 2023 - 2024  Kynetics, Inc.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -18,6 +18,15 @@
 plugins {
     id 'com.android.library' version '8.0.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.20' apply false
+    id "org.sonarqube" version "4.4.1.3373" apply true
+}
+
+sonar {
+    properties {
+        property('sonar.projectName', 'I2C Example App')
+        property("sonar.projectKey", "i2c-example-app")
+        property "sonar.host.url", "http://localhost:9000"
+    }
 }
 
 task clean(type: Delete) {
