@@ -34,9 +34,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.WindowCompat
 import com.kynetics.android_i2c_example_app.databinding.ActivityMainBinding
-import io.helins.linux.i2c.I2CBuffer
-import io.helins.linux.i2c.I2CBus
-import io.helins.linux.i2c.I2CFunctionality
+import com.kynetics.android.sdk.i2c.I2CBuffer
+import com.kynetics.android.sdk.i2c.I2CBus
+import com.kynetics.android.sdk.i2c.I2CFunctionality
 import java.io.File
 import java.io.IOException
 

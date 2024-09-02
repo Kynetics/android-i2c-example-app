@@ -17,7 +17,6 @@
 package com.kynetics.android_i2c_example_app
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.text.method.LinkMovementMethod
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity

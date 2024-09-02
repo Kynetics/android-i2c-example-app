@@ -16,7 +16,7 @@
 
 package com.kynetics.android_i2c_example_app
 
-import io.helins.linux.i2c.I2CBuffer
+import com.kynetics.android.sdk.i2c.I2CBuffer
 
 
 fun Int.toHexString(): String = Integer.toHexString(this)
