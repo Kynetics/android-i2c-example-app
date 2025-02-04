@@ -186,17 +186,23 @@ class MainActivity : AppCompatActivity() {
                     try {
                         i2c?.selectSlave(slave)
 
-                        val buffer = I2CBuffer(1).set(0, readAddress)
+                        val out = if (binding.main.checkBoxSmbusRead.isChecked) {
+                            val smBus = i2c?.smbus!!
+                            smBus.readByte(readAddress).toHexString()
+                        } else {
+                            val buffer = I2CBuffer(1).set(0, readAddress)
 
-                        //Selecting the address to read
-                        i2c?.write(buffer)
-                        i2c?.read(buffer)
+                            //Selecting the address to read
+                            i2c?.write(buffer)
+                            i2c?.read(buffer)
+                            buffer.toHexString()
+                        }
 
                         val result = """
                                     Read Result:
                                     Chip address: 0x${slave.toHexString()}
                                     Read address: 0x${readAddress.toHexString()}
-                                    Value : 0x${buffer.toHexString()}
+                                    Value : 0x${out}
                                 """.trimIndent()
                         binding.main.textViewReadResult.text = result
 
@@ -244,25 +250,33 @@ class MainActivity : AppCompatActivity() {
                     try {
                         i2c?.selectSlave(slave)
 
-                        val buffer =
-                            I2CBuffer(2).set(0, writeAddress).set(1, writeValue)
+                        val out = if (binding.main.checkBoxSmbusWrite.isChecked) {
+                            val smBus = i2c?.smbus!!
+                            smBus.writeByte(writeAddress, writeValue)
+                            smBus.readByte(writeAddress).toHexString()
+                        } else {
+                            val buffer =
+                                I2CBuffer(2).set(0, writeAddress).set(1, writeValue)
 
-                        i2c?.write(buffer)
+                            i2c?.write(buffer)
 
-                        val readBuffer = I2CBuffer(1).set(0, writeAddress)
+                            val readBuffer = I2CBuffer(1).set(0, writeAddress)
 
-                        //Waits between IO operations so the device has time for printing to serial what is going on.
-                        Thread.sleep(100)
+                            //Waits between IO operations so the device has time for printing to serial what is going on.
+                            Thread.sleep(100)
 
-                        //Selecting the address to read
-                        i2c?.write(readBuffer)
-                        i2c?.read(readBuffer)
+                            //Selecting the address to read
+                            i2c?.write(readBuffer)
+                            i2c?.read(readBuffer)
+                            readBuffer.toHexString()
+                        }
+
 
                         val result = """
                                     Write Result:
                                     Chip address: 0x${slave.toHexString()}
                                     Write address: 0x${writeAddress.toHexString()}
-                                    Current Value : 0x${readBuffer.toHexString()}
+                                    Current Value : 0x$out
                                 """.trimIndent()
                         binding.main.textViewWriteResult.text = result
                     } catch (e: IOException) {

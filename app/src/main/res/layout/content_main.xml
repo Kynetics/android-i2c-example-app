@@ -159,7 +159,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
                                 android:hint="Address to read (0x##)"
-                                app:layout_constraintBottom_toTopOf="@+id/textView_read_result"
+                                app:layout_constraintBottom_toTopOf="@+id/checkBox_smbus_read"
                                 app:layout_constraintEnd_toStartOf="@id/button_read"
                                 app:layout_constraintStart_toEndOf="@id/edittext_read_chip_input"
                                 app:layout_constraintTop_toBottomOf="@id/textView_read_title">
@@ -186,6 +186,14 @@
                                 app:layout_constraintStart_toEndOf="@id/edittext_read_address_input"
                                 app:layout_constraintTop_toTopOf="@id/edittext_read_address_input" />
 
+                            <CheckBox
+                                android:id="@+id/checkBox_smbus_read"
+                                android:text="Use SMBus"
+                                app:layout_constraintTop_toBottomOf="@id/edittext_read_address_input"
+                                app:layout_constraintBottom_toTopOf="@+id/textView_read_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
                             <TextView
                                 android:id="@+id/textView_read_result"
                                 android:layout_width="match_parent"
@@ -194,7 +202,7 @@
                                 android:paddingBottom="5dp"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/edittext_read_address_input"
+                                app:layout_constraintTop_toBottomOf="@id/checkBox_smbus_read"
                                 tools:text="Results:" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -262,8 +270,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
-                                android:hint="Address to read (0x##)"
-                                app:layout_constraintBottom_toTopOf="@id/textView_write_result"
+                                android:hint="Address to write (0x##)"
+                                app:layout_constraintBottom_toTopOf="@id/checkBox_smbus_write"
                                 app:layout_constraintEnd_toStartOf="@id/edittext_write_value_input"
                                 app:layout_constraintStart_toEndOf="@id/edittext_write_chip_input"
                                 app:layout_constraintTop_toBottomOf="@id/textView_write_title">
@@ -311,6 +319,14 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/edittext_write_value_input"
                                 app:layout_constraintTop_toTopOf="@id/edittext_write_value_input" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox_smbus_write"
+                                android:text="Use SMBus"
+                                app:layout_constraintTop_toBottomOf="@id/edittext_write_address_input"
+                                app:layout_constraintBottom_toTopOf="@+id/textView_write_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
 
                             <TextView
                                 android:id="@+id/textView_write_result"
