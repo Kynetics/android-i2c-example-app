@@ -1,5 +1,5 @@
 <!--
-    Copyright © 2023 - 2024  Kynetics, Inc.
+    Copyright © 2023 - 2025  Kynetics, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -30,5 +30,5 @@
         <a href="https://github.com/Kynetics/linux-i2c.java">https://github.com/Kynetics/linux-i2c.java</a>
 
     </string>
-    <string name="about_copyright">Copyright © 2023 - 2024  Kynetics, Inc.</string>
+    <string name="about_copyright">Copyright © 2023 - 2025  Kynetics, Inc.</string>
 </resources>

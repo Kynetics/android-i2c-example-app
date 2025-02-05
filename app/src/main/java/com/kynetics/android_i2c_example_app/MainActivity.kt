@@ -1,5 +1,5 @@
 /*
-   Copyright © 2023 - 2024  Kynetics, Inc.
+   Copyright © 2023 - 2025  Kynetics, Inc.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.WindowCompat
+import com.kynetics.android.sdk.i2c.I2C
 import com.kynetics.android_i2c_example_app.databinding.ActivityMainBinding
 import com.kynetics.android.sdk.i2c.I2CBuffer
 import com.kynetics.android.sdk.i2c.I2CBus
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        I2C.init(this)
         setupToolbar()
     }
 
